@@ -1,0 +1,50 @@
+{
+	"name": "flow-meter",
+	"version": "0.0.1",
+	"author": "Oleg Chepelev <yorkblansh@gmail.com>",
+	"private": true,
+	"scripts": {
+		"api:prisma:generate": "yarn workspace api run prisma:generate",
+		"api:start:prod:events": "yarn workspace events run start:prod",
+		"api:build:events": "yarn workspace events run build",
+		"react:build:barcode-app": "yarn workspace react run build:barcode-app",
+		"react:build:barcodes-layout": "yarn workspace react run build:barcodes-layout",
+		"react:build:form16": "yarn workspace react run build:form16",
+		"react:build:form23a": "yarn workspace react run build:form23a",
+		"script:update-api-by-forms": "yarn workspace scripts run script:update-api-by-forms",
+		"script:generate-jsx-forms-map": "yarn workspace scripts run script:generate-jsx-forms-map",
+		"script:generate-static-temlates": "yarn workspace scripts run script:generate-static-temlates",
+		"script:generate-form-interfaces": "yarn workspace scripts run script:generate-form-interfaces",
+		"script:generate-form-enum": "yarn workspace scripts run script:generate-form-enum",
+		"api:build": "yarn workspace api run build",
+		"api:start:prod": "yarn workspace api run start:prod",
+		"prettier": "prettier --write ."
+	},
+	"workspaces": {
+		"packages": [
+			"workspaces/*"
+		]
+	},
+	"packageManager": "yarn@4.0.2",
+	"devDependencies": {
+		"@nestjs/serve-static": "^4.0.0",
+		"@yarnpkg/pnpify": "^4.0.1",
+		"hotscript": "^1.0.13",
+		"prettier": "^3.1.1",
+		"prisma": "^5.7.1",
+		"typescript": "^5.3.3"
+	},
+	"dependenciesMeta": {
+		"prettier@2.7.1": {
+			"unplugged": true
+		}
+	},
+	"dependencies": {
+		"@nestjs/mapped-types": "^2.0.4",
+		"@prisma/client": "^5.7.1",
+		"axios": "^1.6.3",
+		"bwip-js": "^4.1.2",
+		"fp-ts-std": "^0.18.0",
+		"to-words": "^4.0.0"
+	}
+}
