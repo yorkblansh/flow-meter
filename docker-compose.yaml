@@ -1,0 +1,19 @@
+services:
+  node-20:
+    image: node:20
+
+  app:
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    container_name: app
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - 90:5055
+      - 5174:5172
+    volumes:
+      - ./:/app
+    tty: true
+    stdin_open: true
+    restart: on-failure
