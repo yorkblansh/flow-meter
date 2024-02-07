@@ -1,25 +1,73 @@
 import './App.scss'
 import _ from 'lodash'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { createClient } from '@supabase/supabase-js'
-
-const supabaseUrl = 'https://tmwowlcdosxcssyzbdpy.supabase.co'
-const supabaseKey =
-	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRtd293bGNkb3N4Y3NzeXpiZHB5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcwNjU5NDI1NSwiZXhwIjoyMDIyMTcwMjU1fQ.jHcr6ysFsAqr4A7JlUANLmFoCMuP9rkMMDvaoE9_umU'
-const supabase = createClient(supabaseUrl, supabaseKey)
+import { supabase } from './client'
 
 const App = () => {
+	// useEffect(() => {
+
+	// }, [])
+
+	// return (
+	// 	<div>
+	// 		<div className=""></div>
+	// 	</div>
+	// )
+
+	const [user, setUser] = useState(null)
 	useEffect(() => {
-		supabase
-			.from('test_table')
-			.select('*')
-			.then((d) => {
-				console.log(d.data)
-			})
+		checkUser()
+		window.addEventListener('hashchange', function () {
+			checkUser()
+		})
 	}, [])
 
-	return <div>12346546546989879879</div>
+	const getSession = async () => {
+		// supabase
+		// 	.schema('public').
+		supabase
+			.from('test_table')
+			.select()
+			.then((d) => {
+				// console.log(d.error)
+				console.log(d.data)
+			})
+		// console.log((await supabase.auth.getSession()).data.session.)
+	}
+
+	async function checkUser() {
+		const user = await supabase.auth.getUser()
+		setUser(user.data.user)
+	}
+	async function signInWithGithub() {
+		await supabase.auth.signInWithOAuth({
+			provider: 'github',
+		})
+	}
+	async function signOut() {
+		await supabase.auth.signOut()
+		setUser(null)
+	}
+
+	console.log(user)
+
+	if (user) {
+		return (
+			<div className="App">
+				<h1>Hello, {user.email}</h1>
+				<button onClick={signOut}>Sign out</button>
+				<button onClick={getSession}>get session</button>
+			</div>
+		)
+	}
+	return (
+		<div className="App">
+			<h1>Hello, please sign in!</h1>
+			<button onClick={signInWithGithub}>Sign In</button>
+			<button onClick={getSession}>get session</button>
+		</div>
+	)
 }
 
 export const Router = () => {

@@ -25,26 +25,5 @@
 			"workspaces/*"
 		]
 	},
-	"packageManager": "yarn@4.0.2",
-	"devDependencies": {
-		"@nestjs/serve-static": "^4.0.0",
-		"@yarnpkg/pnpify": "^4.0.1",
-		"hotscript": "^1.0.13",
-		"prettier": "^3.1.1",
-		"prisma": "^5.7.1",
-		"typescript": "^5.3.3"
-	},
-	"dependenciesMeta": {
-		"prettier@2.7.1": {
-			"unplugged": true
-		}
-	},
-	"dependencies": {
-		"@nestjs/mapped-types": "^2.0.4",
-		"@prisma/client": "^5.7.1",
-		"axios": "^1.6.3",
-		"bwip-js": "^4.1.2",
-		"fp-ts-std": "^0.18.0",
-		"to-words": "^4.0.0"
-	}
+	"packageManager": "yarn@4.0.2"
 }
