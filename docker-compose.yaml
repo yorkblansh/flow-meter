@@ -10,6 +10,7 @@ services:
       context: ./
       dockerfile: ./Dockerfile
     ports:
+      - 6006:6006
       - 90:5055
       - 5174:5172
     volumes:
